@@ -1,0 +1,113 @@
+body {
+  background-color:#ffffff;
+  font-family:  Arial, "Lucida Grande", sans-serif; 
+  color:white;
+  height:100%;
+  text-align:center;
+  font-size:18px;
+}
+
+.jumbotron{
+  background-color:black;
+}
+hr.style4{
+  border-top: 1px solid red;
+  
+}
+hr.style3{
+  border-top: 1px solid royalblue;
+  
+}
+
+#status{
+  border:2px solid black;
+}
+.wrappper{
+  
+  width:100%;
+  margin:0 auto;
+}
+
+
+
+
+h1, h2, h3 {
+  font-family: 'Lexend Tera', sans-serif;
+	
+	text-transform: uppercase;
+  margin:5px 0;
+}
+
+
+
+#letter {
+  font-family: 'Lexend Tera', sans-serif;
+  font-size: 20px
+  
+}
+
+
+  #alphabet li:hover {
+      background-color: blue;
+      border: solid 1px black;
+      color:white;
+    }
+
+    #scoreboard{
+      background-color:navajowhite;
+      color:black;
+      font-family: 'Lexend Tera', sans-serif;
+
+    }
+
+#my-word {
+  margin: 0;
+  display: block;
+  padding: 0;
+  display:block;
+}
+
+#my-word li {
+  position: relative;
+  list-style: none;
+  margin: 0;
+  display: inline-block;
+  padding: 0 10px;
+  font-size:1.6em;
+}
+
+.active {
+  
+  cursor:default;
+}
+  .active:hover{
+      opacity: .5;
+    }
+
+
+#mylives{
+  font-size:1.6em;
+  text-align:center;
+  display:block;
+}
+
+
+    button:hover{
+      opacity: .5;
+      background:white;
+      border: solid 1px black;
+      color:green;
+    }
+
+
+@media (max-width: 767px) {
+  #alphabet {
+  padding:0 0 0 15px;
+}
+  }
+
+  @media (max-width: 480px) {
+  #alphabet {
+  padding:0 0 0 25px;
+}
+  }

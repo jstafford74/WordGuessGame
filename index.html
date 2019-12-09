@@ -1,0 +1,109 @@
+<html lang="en-us">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Word Guess Game</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Lexend+Tera&display=swap" rel="stylesheet">
+
+
+
+    <!-- <link rel="stylesheet" href="assets/css/reset.css"> -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/umd/popper.min.js"></script>
+    <script src="https://kit.fontawesome.com/fee8a4f90f.js"></script>
+</head>
+
+<body>
+    <div class="jumbotron">
+        <h1 class="display-1">Word Guess</h1>
+        <hr class="style4">
+        <h1 class="display-4">Select Your Level</h1>
+        <hr class="style3">
+        <h1 class="display-4">Select Your Letter</h1>
+    </div>
+    <div class="container-fluid ">
+
+        <div class="row">
+            <div class="col-2"></div>
+            <div class="col-xs-12 col-sm-6 col-md-2">
+                <button type="button" class="btn btn-xlg btn-primary level" id="bas"><i
+                        class="fas fa-blind fa-5x"></i>Basic</button>
+
+            </div>
+            <div class="col-1"></div>
+            <div class="col-xs-12 col-sm-6 col-md-2">
+                <button type="button" class="btn btn-xlg btn-warning level" id="int"><i
+                        class="fas fa-dragon fa-5x"></i>Intermediate</button>
+
+            </div>
+            <div class="col-1"></div>
+            <div class="col-xs-12 col-sm-6 col-md-2">
+                <button type="button" class="btn btn-xlg btn-success level" id="adv"><i
+                        class="fas fa-brain fa-5x"></i>Advanced</button>
+
+            </div>
+            <div class="col-2"></div>
+        </div>
+        <hr class="my-4">
+    </div>
+    <div class="jumbotron" style="background-color:navajowhite" id="scoreboard">
+        <div class="card mb-3">
+            <div class="row no-gutters">
+                <div class="col-md-4" id="status">
+                    <p class="card-title"><strong>Words Used </strong></p>
+                    <p> <span id="words-used">--</span></p>
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h3 class="card-title">Word to Guess</h3>
+                        <h3 id="hold">_ _ _ _ _ _ _ _ _ </h3>
+
+                        <p class="card-text"><small class="text-muted">Guesses:</small><span id="guesses"></span></p>
+                        <p class="card-text"><small class="text-muted">Guesses Left: </small><span
+                                id="guesses-left">10</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card mb-3">
+            <div class="row no-gutters">
+                <div class="col-md-4" id="status">
+
+                    <p class="card-title"><strong>Wins: </strong> <span id="win-counter">0</span></p>
+                    <p class="card-title"><strong>Losses: </strong> <span id="loss-counter">0</span></p>
+                    <p class="card-title"><strong>Games: </strong> <span id="games-played">0</span></p>
+
+                </div>
+                <div class="d-flex flex-row justify-content-around col-md-8">
+                    <div class="justify-content-between col-5" id="vowel-btns">
+
+                    </div>
+
+                    <div class="col-7" id="consonant-btns">
+
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+        <!-- <div class="row">
+            <div class="card-body" id="buttons">
+
+            </div>
+        </div> -->
+    </div>
+
+    <div class="container">
+        <button id="reset">Play again</button>
+    </div>
+    <script src="assets/Javascript/game.js"></script>
+</body>
+
+</html>
