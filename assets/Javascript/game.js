@@ -8,11 +8,13 @@ gradeInter = ["sharks", "sharp", "arctic", "born", "forward", "form", "forest", 
 gradeAdvan = ["conflicts", "examples", "helpful", "imagine", "plans", "printed", "problems", "upset", "echoed", "scrambled", "reeds", "valley", "gully", "clutched"];
 
 // Player chooses level of difficulty 
-let chosenWord;         // Selected word
+// Selected word
 const wordList = [];
-const lettersCorr = [];        // Letters in chosen word
+let lettersCorr;        // Letters in chosen word
+let gameCounter = -1;
+let theWord;
+let inWord
 let numBlanks;           // Number of blanks to show
-const curState = [];           // Number of right guesses and blanks left
 let guessed;            // User's Guess
 const wrongGuesses = [];       // Stored guesses
 let winCounter = 0;          // Count games won
@@ -25,25 +27,14 @@ let numGuesses = 10;         // Count number of guesses
 // Create alphabet buttons
 
 
-// $(document).ready(() => {
-    vwlButts();
-    conButts();
-    $(".letter").on("click", ltrFunc(this.innerHTML));
 
-// });
-// $('.letter').on('click', '.btn', () => {
-//     const guess = $(this).text();
-//     console.log(guess);
-// numGuesses--;
-// guessed = guess;
-// // console.log(numGuesses,chosenWord);
-// if (guessed != "") {
-//     checkLetters(guessed);
-//     wrongGuesses.push(guessed.toUpperCase());
-//     document.getElementById("guesses").innerHTML = wrongGuesses.join(" ");
+vwlButts();
+conButts();
+$(".letter").on("click", ltrFunc);
+document.getElementById("bas").addEventListener("click", startGame);
+document.getElementById("int").addEventListener("click", startGame);
+document.getElementById("adv").addEventListener("click", startGame);
 
-// }
-// });
 
 function vwlButts() {
     vwlButts = $('#vowel-btns');
@@ -76,85 +67,75 @@ function conButts() {
 }
 
 
-
 function ltrFunc(guess) {
-
-    numGuesses--;
-    checkLetters(guess);
-    wrongGuesses.push(guess.toUpperCase());
-    document.getElementById("guesses").innerHTML = wrongGuesses.join(" ");
+    var guess = this.innerHTML;
+    czechLtr(guess);
+    console.log(lettersCorr);
+    document.getElementById("guesses-left").innerHTML = numGuesses;
+    document.getElementById("hold").innerHTML = lettersCorr.join('');
+    document.getElementById("guesses").innerHTML = wrongGuesses;
 
 }
+
 // roundComplete();
 
 
-
-//Assign events to level buttons
-document.getElementById("bas").addEventListener("click", function () {
-    level = this.id;
-    console.log(level);
-    chosenWord = gradeBasic[Math.floor(Math.random() * gradeBasic.length + 1)];
-    console.log(chosenWord);
-    startGame();
-
-
-
-});
-
-document.getElementById("int").addEventListener("click", function () {
-    level = this.id;
-    console.log(level);
-    chosenWord = gradeInter[Math.floor(Math.random() * gradeInter.length + 1)];
-    console.log(chosenWord);
-    startGame();
-
-});
-
-document.getElementById("adv").addEventListener("click", function () {
-    level = this.id;
-    console.log(level);
-    chosenWord = gradeAdvan[Math.floor(Math.random() * gradeAdvan.length + 1)];
-    console.log(chosenWord);
-
-    startGame();
-
-});
-
-
-function startGame() {
-    numGuesses = 10;
-    lettersCorr.push(chosenWord.split(""));
-    console.log(lettersCorr[0].length);
-    numBlanks = lettersCorr[0].length;
-    const curState = [];
-    const wrongGuesses = [];
-    lettersCorr[0].forEach(it => {
-        curState.push("_");
-    })
-
-    document.getElementById("guesses-left").innerHTML = numGuesses;
-    document.getElementById("hold").innerHTML = curState.join(" ");
-    document.getElementById("guesses").innerHTML = wrongGuesses.join(" ");
-}
-
-function checkLetters(letter) {
-    let letterInWord = false;
-    for (const i = 0; i < numBlanks; i++) {
-        if (chosenWord[i] === letter) {
-            letterInWord = true;
-            curState[j] = letter;
+function czechLtr(guess) {
+    inWord = false
+    const indi = [];
+    for (let i = 0; i < theWord.length; i++) {
+        if (theWord[i] == guess.toLowerCase()) {
+            inWord = true;
+            indi.push(i);
         }
     }
 
-    // if (letterInWord) {
-    //     for (const j = 0; j < numBlanks; j++) {
-    //         if (chosenWord[j] === letter) {
-    //             curState[j] = letter;
-
-    //         }
-    document.getElementById("hold").innerHTML = curState.join(" ");
+    if (!inWord) {
+        numGuesses--;
+        wrongGuesses.push(guess);
+    } else {
+        for (j = 0; j < indi.length; j++) {
+            const x = indi[j];
+            lettersCorr[x] = guess;
+            console.log(lettersCorr);
+        }
+        return lettersCorr;
+    }
 }
 
+
+
+function choseWord(arr) {
+    const chosenWord = arr[[Math.floor(Math.random() * arr.length + 1)]];
+    wordList.push(chosenWord);
+
+}
+
+function startGame() {
+    level = this.id;
+    gameCounter++;
+    switch (level) {
+        case "bas":
+            choseWord(gradeBasic);
+            break;
+        case "int":
+            choseWord(gradeInter);
+            break;
+        case "adv":
+            choseWord(gradeAdvan);
+            break;
+        default:
+            alert("Please Choose a Level");
+    }
+    theWord = wordList[gameCounter];
+    lettersCorr = theWord.split('').map((ltr => "_"));
+    numBlanks = lettersCorr.length;
+    document.getElementById("guesses-left").innerHTML = numGuesses;
+    document.getElementById("hold").innerHTML = lettersCorr.join('');
+    document.getElementById("guesses").innerHTML = wrongGuesses.join(" ");
+
+    console.log(theWord);
+}
 
 
 
